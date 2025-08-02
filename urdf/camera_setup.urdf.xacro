@@ -12,12 +12,12 @@
   <xacro:arg name="camera_frame" default="camera_link"/> -->
 
   <!-- Define properties to make expressions safer and debuggable -->
-  <xacro:property name="camera_x" value="0.0"/>
-  <xacro:property name="camera_y" value="0.0"/>
-  <xacro:property name="camera_z" value="0.1"/>
-  <xacro:property name="camera_roll" value="0.0"/>
+  <xacro:property name="camera_x" value="0.01"/>
+  <xacro:property name="camera_y" value="0.02"/>
+  <xacro:property name="camera_z" value="0.03"/>
+  <xacro:property name="camera_roll" value="-1.57"/>
   <xacro:property name="camera_pitch" value="0.0"/>
-  <xacro:property name="camera_yaw" value="0.0"/>
+  <xacro:property name="camera_yaw" value="-1.57"/>
 
   <!-- Include the dummy robot URDF -->
   <xacro:include filename="$(find board_calib)/urdf/robot_description.urdf.xacro"/>
@@ -35,9 +35,12 @@
   <!-- Charuco board fixed in front of base_link, adjust as per your setup -->
   <link name="charuco_board_link"/>
   <joint name="base_to_charuco_board_joint" type="fixed">
-    <parent link="map"/>
+    <parent link="base_link"/>
     <child link="charuco_board_link"/>
-    <origin xyz="0.27 0 0.1" rpy="0 0 0"/> <!-- update these values to match your setup -->
+    <origin xyz="0.25 0.08 -0.03" rpy="1.57 0.0 -1.57"/> <!-- update these values to match your setup -->
   </joint>
+
+  <!-- Tranform between camera frame and camera optical frame -->
+  <!-- xyz="0 0 0" rpy="-1.57 0.0 -1.57"-->
 
 </robot>

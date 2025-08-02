@@ -6,12 +6,15 @@ import yaml
 import xacro
 
 def generate_launch_description():
+    
+    print("========== Launch File Execution Started ==========")
+
     package_dir = get_package_share_directory('board_calib')
     print("Package Directory = ", package_dir)
 
     # Load calibration values
     calib_file = os.path.join(package_dir, 'config', 'calibration_values.yaml')
-    print("Using Calibration Values File = ", calib_file)
+    print("Calibration Values File = ", calib_file)
     with open(calib_file, 'r') as f:
         calib_data = yaml.safe_load(f)
 
@@ -20,7 +23,7 @@ def generate_launch_description():
     base_frame = calib_data['camera_transform']['base_frame']
     camera_frame = calib_data['camera_transform']['camera_frame']
 
-    print("Imported Initial Values")
+    print("===== Imported Initial Values =====")
     print("XYZ = ", xyz)
     print("RPY = ", rpy)
     print("Base Frame = ", base_frame)

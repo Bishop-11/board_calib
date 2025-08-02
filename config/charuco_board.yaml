@@ -4,3 +4,11 @@ charuco:
   square_length: 0.02   # meters (20mm)
   marker_length: 0.01   # meters (10mm, typical marker inside square)
   dictionary: "DICT_4X4_50"
+
+# Board origin
+# The origin of the board is always at the bottom-left corner
+# The x-axis increases to the right (columns)
+# The y-axis increases upwards (rows)
+# The z-axis comes out of the board plane (towards the camera facing it)
+# The front face of the board (i.e., the marker side you observe) faces in the +Z direction of the board frame
+# So, when a camera detects the board head-on, it's located somewhere on the +Z side of the board, looking toward the XY plane of the board.
