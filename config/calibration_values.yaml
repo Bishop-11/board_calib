@@ -1,0 +1,5 @@
+camera_transform:
+  xyz: [0.023, -0.118, 0.884]
+  rpy: [0.012, -0.031, 3.141]
+  base_frame: "base_link"
+  camera_frame: "camera_link"
