@@ -1,8 +1,8 @@
 charuco:
   squares_x: 5
   squares_y: 5
-  square_length: 0.02   # meters (20mm)
-  marker_length: 0.01   # meters (10mm, typical marker inside square)
+  square_length: 0.022   # meters (22mm)
+  marker_length: 0.011   # meters (11mm, typical marker inside square)
   dictionary: "DICT_4X4_50"
 
 # Board origin

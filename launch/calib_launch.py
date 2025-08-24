@@ -7,7 +7,7 @@ import xacro
 
 def generate_launch_description():
     
-    print("========== Launch File Execution Started ==========")
+    print("="*20 + " Launch File Execution Started " + "="*20)
 
     package_dir = get_package_share_directory('board_calib')
     print("Package Directory = ", package_dir)
@@ -23,7 +23,7 @@ def generate_launch_description():
     base_frame = calib_data['camera_transform']['base_frame']
     camera_frame = calib_data['camera_transform']['camera_frame']
 
-    print("===== Imported Initial Values =====")
+    print("="*10 + " Imported Initial Values " + "="*10)
     print("XYZ = ", xyz)
     print("RPY = ", rpy)
     print("Base Frame = ", base_frame)
