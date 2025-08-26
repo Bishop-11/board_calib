@@ -37,7 +37,7 @@
   <joint name="base_to_charuco_board_joint" type="fixed">
     <parent link="base_link"/>
     <child link="charuco_board_link"/>
-    <origin xyz="-0.06 0.22 0.015" rpy="1.57 0.0 0.0"/> <!-- update these values to match your setup -->
+    <origin xyz="-0.055 0.170 0.010" rpy="1.57 0.0 0.0"/> <!-- update these values to match your setup -->
   </joint>
 
   <!-- Tranform between camera frame and camera optical frame -->
