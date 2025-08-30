@@ -12,15 +12,15 @@
   <xacro:arg name="camera_frame" default="camera_link"/> -->
 
   <!-- Define properties to make expressions safer and debuggable -->
-  <xacro:property name="camera_x" value="0.00"/>
+  <!-- <xacro:property name="camera_x" value="0.00"/>
   <xacro:property name="camera_y" value="0.00"/>
   <xacro:property name="camera_z" value="0.15"/>
   <xacro:property name="camera_roll" value="0.0"/>
   <xacro:property name="camera_pitch" value="0.0"/>
-  <xacro:property name="camera_yaw" value="0.0"/>
+  <xacro:property name="camera_yaw" value="0.0"/> -->
 
-  <!-- Include the dummy robot URDF -->
-  <xacro:include filename="$(find board_calib)/urdf/robot_description.urdf.xacro"/>
+  <!-- Include the Robot URDF -->
+  <!-- <xacro:include filename="$(find board_calib)/urdf/robot_description.urdf.xacro"/> -->
 
   <!-- Camera link -->
   <!-- <link name="camera_link"/> -->
@@ -32,12 +32,45 @@
     <origin xyz="${camera_x} ${camera_y} ${camera_z}" rpy="${camera_roll} ${camera_pitch} ${camera_yaw}"/>
   </joint> -->
 
-  <!-- Charuco board fixed in front of base_link, adjust as per your setup -->
+  <!-- Attach to Global Map -->
+  <link name="map"/>
+  <link name="calibration_map"/>
+  <joint name="map_to_calibration_map" type="fixed">
+    <parent link="map"/>
+    <child link="calibration_map"/>
+    <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+  </joint>
+
+  <!-- CALIBRATION BOARD & RELATED LINKS-->
+  <!-- Map to Table Link -->
+  <link name="table_link"/>
+  <joint name="calibration_map_to_table_link" type="fixed">
+    <parent link="calibration_map"/>
+    <child link="table_link"/>
+    <origin xyz="0.755 0.500 0.397" rpy="0.0 0.0 0.0"/>
+  </joint>
+
+  <!-- Map to Charuco Board Centre Link -->
+  <link name="charuco_board_centre_link"/>
+  <joint name="map_to_charuco_board" type="fixed">
+    <parent link="calibration_map"/>
+    <child link="charuco_board_centre_link"/>
+    <!-- update these values to match your setup -->
+    <!-- Desk Setup -->
+    <origin xyz="0.00 0.20 0.065" rpy="1.57 0.0 0.0"/>
+    <!-- UR Setup -->
+    <!-- Towards Arms -->
+    <!-- <origin xyz="0.325 0.0 0.407" rpy="0.0 0.0 -1.57"/> -->
+    <!-- Towards Door -->
+    <!-- <origin xyz="0.685 0.0 0.407" rpy="0.0 0.0 -1.57"/> -->
+  </joint>
+
+  <!-- Charuco Board Centre Link to Charuco Board Link -->
   <link name="charuco_board_link"/>
-  <joint name="base_to_charuco_board_joint" type="fixed">
-    <parent link="base_link"/>
+  <joint name="charuco_board_centre_to_charuco_board" type="fixed">
+    <parent link="charuco_board_centre_link"/>
     <child link="charuco_board_link"/>
-    <origin xyz="-0.055 0.170 0.010" rpy="1.57 0.0 0.0"/> <!-- update these values to match your setup -->
+    <origin xyz="-0.065 -0.065 0.0" rpy="0.0 0.0 0.0"/> <!-- update these values to match your setup -->
   </joint>
 
   <!-- Tranform between camera frame and camera optical frame -->
